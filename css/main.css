@@ -1,0 +1,17 @@
+.prettyprint {
+	text-align: left;
+}
+
+#main_content {
+	padding-top: 60px;
+	padding-bottom: 40px;
+}
+
+/* Responsive
+-------------------------------------------------- */
+@media (max-width: 980px) {
+	#main_content {
+		padding-top: 0px;
+		padding-bottom: 20px;
+	}
+}

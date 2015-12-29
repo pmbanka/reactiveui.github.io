@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="All"
+         xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+         ToolsVersion="4.0">
+    <Import Project="$(MSBuildProjectDirectory)\tools\ajaxmin\AjaxMin.tasks" />
+    <Target Name="All">
+        <CallTarget Targets="Minify" />
+        <Message Text="Build complete." />
+    </Target>
+    <Target Name="Minify">
+        <ItemGroup>
+            <CssToMinify Include="$(MSBuildProjectDirectory)\css\*.css"
+                         Exclude="$(MSBuildProjectDirectory)\css\bootstrap*.css;$(MSBuildProjectDirectory)\css\*.min.css" />
+            <JsToMinify Include="$(MSBuildProjectDirectory)\js\*.js"
+                        Exclude="$(MSBuildProjectDirectory)\js\*.min.js;$(MSBuildProjectDirectory)\js\vendor\**\*.js" />
+        </ItemGroup>
+        <Message Text="Minifying: %(CssToMinify.FullPath)" />
+        <Message Text="Minifying: %(JsToMinify.FullPath)" />
+        <AjaxMin JsSourceFiles="@(JsToMinify)"
+                 JsSourceExtensionPattern="\.js$"
+                 JsTargetExtension=".min.js"
+                 CssSourceFiles="@(CssToMinify)"
+                 CssSourceExtensionPattern="\.css$"
+                 CssTargetExtension=".min.css" />
+    </Target>
+</Project>

@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+	<head>
+	<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title>ReactiveUI: Home</title>
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="/css/prettify.min.css" />
+<link rel="stylesheet" href="/css/main.min.css" />
+
+	
+<link rel="stylesheet" href="/css/home.min.css" />
+	
+
+<script src="/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+
+	</head>
+	<body>
+		<!--[if lt IE 7]>
+			<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+		<![endif]-->
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner">
+	<div class="container">
+		<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+		<a class="brand" href="/">ReactiveUI</a>
+		<div class="nav-collapse collapse">
+			<ul class="nav">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Download <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="https://www.nuget.org/packages/reactiveui">NuGet Packages</a></li>
+						<li class="divider"></li>
+						<li><a href="https://github.com/reactiveui/ReactiveUI">Source Code</a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Get Help <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Learn</li>
+                        <li><a href="https://github.com/reactiveui/ReactiveUI#introduction">Introduction</a></li>
+						<li><a href="http://docs.reactiveui.net/">Documentation</a></li>
+						<li><a href="https://github.com/reactiveui/ReactiveUI/issues/687">Examples</a></li>
+						<li><a href="https://github.com/reactiveui/ReactiveUI/issues/979">Success Stories</a></li>
+						<li class="divider"></li>
+						<li class="nav-header">Ask Questions</li>
+						<li><a href="http://stackoverflow.com/questions/tagged/reactiveui">StackOverflow</a></li>
+						<li><a href="https://twitter.com/reactivexui">Twitter</a></li>
+						<li><a href="https://github.com/reactiveui/ReactiveUI#slack">Slack</a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">The Project <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li class="nav-header">Found an Issue?</li>
+						<li><a href="https://github.com/reactiveui/ReactiveUI/issues">Bugs/Enhancement Requests</a></li>
+						<li class="divider"></li>
+						<li class="nav-header">Source</li>
+						<li><a href="https://github.com/reactiveui/ReactiveUI">GitHub Repository</a></li>
+						<li><a href="http://docs.reactiveui.net/en/latest/contributing/">Contribute</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div><!--/.nav-collapse -->
+	</div>
+</div>
+
+		</div>
+
+<header class="jumbotron">
+	<div class="container">
+		<img src="img/carousel-logo.png" alt="ReactiveUI" />
+		<h1>ReactiveUI</h1>
+		<p class="lead">Use the <a href="https://rx.codeplex.com/">Reactive Extensions</a> for .NET to create elegant, testable User Interfaces that run on any mobile or desktop platform. Supports Xamarin.iOS, Xamarin.Android, Xamarin.Mac, Xamarin Forms, WPF, Windows Forms, Windows Phone 8, Windows Store and Universal Windows Platform (UWP).</p>
+		<p>
+			<!-- <a href="http://reactiveui.readthedocs.org/en/latest/getting-started/index.html" class="btn btn-primary btn-large">Quick Start Guide &raquo;</a> -->
+			<a href="https://www.nuget.org/Packages/reactiveui" class="btn btn-primary btn-large">Download via NuGet &raquo;</a>
+		</p>
+	</div>
+</header>
+
+
+<div class="container">
+	<div class="marketing">
+		<div class="row-fluid">
+			<div class="span6">
+
+			<img src="/img/tumblr_inline_ng0du4FXNR1saryxr.png">
+			</div>
+
+			<div class="span6">
+			<br/>
+<pre class="prettyprint linenums">
+public class SearchViewModel : ISearchViewModel
+{
+    public ReactiveList&lt;SearchResults&gt; SearchResults { get; set; }
+
+    private string searchQuery;
+    public string SearchQuery {
+        get { return searchQuery; }
+        set { this.RaiseAndSetIfChanged(ref searchQuery, value); }
+
+    }
+
+    public ReactiveCommand&lt;List&lt;SearchResults&gt;&gt; Search { get; set; }
+
+    public ISearchService SearchService { get; set; }
+}
+</pre>
+			</div>
+		</div>
+	</div>
+
+	<div class="marketing">
+		<div class="row-fluid">
+			<div class="span12">
+
+				<h2>A Compelling Example</h2>
+<pre class="prettyprint linenums">
+public SearchViewModel(ISearchService searchService = null) : ReactiveObject, IRoutableViewHost
+{
+    SearchService = searchService ?? Locator.Current.GetService&lt;ISearchService&gt;();
+
+    // Here we're describing here, in a *declarative way*, the conditions in
+    // which the Search command is enabled.  Now our Command IsEnabled is
+    // perfectly efficient, because we're only updating the UI in the scenario
+    // when it should change.
+    var canSearch = this.WhenAny(x => x.SearchQuery, x => !String.IsNullOrWhiteSpace(x.Value));
+
+    // ReactiveCommand has built-in support for background operations and
+    // guarantees that this block will only run exactly once at a time, and
+    // that the CanExecute will auto-disable and that property IsExecuting will
+    // be set according whilst it is running.
+    Search = ReactiveCommand.CreateAsyncTask(canSearch, async _ => {
+        return await searchService.Search(this.SearchQuery);
+    });
+
+    // ReactiveCommands are themselves IObservables, whose value are the results
+    // from the async method, guaranteed to arrive on the UI thread. We're going
+    // to take the list of search results that the background operation loaded, 
+    // and them into our SearchResults.
+    Search.Subscribe(results => {
+        SearchResults.Clear();
+        SearchResults.AddRange(results);
+    });
+
+    // ThrownExceptions is any exception thrown from the CreateAsyncTask piped
+    // to this Observable. Subscribing to this allows you to handle errors on
+    // the UI thread. 
+    Search.ThrownExceptions
+        .Subscribe(ex => {
+            UserError.Throw("Potential Network Connectivity Error", ex);
+        });
+
+    // Whenever the Search query changes, we're going to wait for one second
+    // of "dead airtime", then automatically invoke the subscribe command.
+    this.WhenAnyValue(x => x.SearchQuery)
+        .Throttle(TimeSpan.FromSeconds(1), RxApp.MainThreadScheduler)
+        .InvokeCommand(this, x => x.Search);
+}
+</pre>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="marketing">
+		<h1>Get Involved</h1>
+		<p class="marketing-byline">
+				<p>Found an issue? <a href="https://github.com/reactiveui/ReactiveUI/issues">Let us know!</a> Want to help us improve ReactiveUI? <a href="https://github.com/reactiveui/ReactiveUI">Check out the source</a> and our <a href="http://docs.reactiveui.net/en/latest/contributing/">contributor's guide</a>!</p>
+
+				<a href="https://github.com/reactiveui/reactiveui/releases"><img src="https://img.shields.io/github/release/reactiveui/reactiveui.svg"></a>
+				<a href="https://www.nuget.org/packages/reactiveui"><img src="https://img.shields.io/nuget/dt/reactiveui-core.svg"/></a>
+				<a href="http://www.issuestats.com/github/reactiveui/reactiveui"><img src="http://www.issuestats.com/github/reactiveui/reactiveui/badge/pr" /></a>
+				<a href="http://www.issuestats.com/github/reactiveui/reactiveui"><img src="http://www.issuestats.com/github/reactiveui/reactiveui/badge/issue" /></a>
+	</div>
+</div>
+
+
+<footer class="footer">
+</footer>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script src="/js/vendor/bootstrap.min.js"></script>
+<script src="/js/vendor/google-code-prettify/prettify.js"></script>
+<script src="/js/plugins.min.js"></script>
+<script src="/js/main.min.js"></script>
+
+<script type="text/javascript">
+var clicky_site_ids = clicky_site_ids || [];
+clicky_site_ids.push(100909170);
+(function() {
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = '//static.getclicky.com/js';
+  ( document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0] ).appendChild( s );
+})();
+</script>
+<noscript><img width="1" height="1" src="//in.getclicky.com/100909170ns.gif" /></noscript>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-71838091-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+	</body>
+</html>
