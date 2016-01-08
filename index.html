@@ -104,7 +104,7 @@
 			<div class="span6">
 			<br/>
 <pre class="prettyprint linenums">
-public class SearchViewModel : ISearchViewModel
+public class SearchViewModel : ReactiveObject, IRoutableViewHost
 {
     public ReactiveList&lt;SearchResults&gt; SearchResults { get; set; }
 
@@ -130,7 +130,8 @@ public class SearchViewModel : ISearchViewModel
 
 				<h2>A Compelling Example</h2>
 <pre class="prettyprint linenums">
-public SearchViewModel(ISearchService searchService = null) : ReactiveObject, IRoutableViewHost
+// Constructor
+public SearchViewModel(ISearchService searchService = null)
 {
     SearchService = searchService ?? Locator.Current.GetService&lt;ISearchService&gt;();
 
